@@ -1,0 +1,8 @@
+M104 S0 ;extruder off
+M140 S0 ;bed off
+G91 ;relative mode
+G1 E-1 F300 ;retract filament
+G1 Z+2 E-5 X-5 Y-5 F9000 ; sube Z un poco más (2mm) y retrae más suavemente
+G28 X Y ; doble home de X e Y al final (opcional pero seguro)
+M84 ; disable motors
+G90 ;absolute mode

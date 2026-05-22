@@ -1,0 +1,37 @@
+G21 ; metric values
+G90 ; absolute positioning
+M82 ; set extruder to absolute mode
+M107 ; start with the fan off
+
+; --- PRECALENTAMIENTO ---
+M140 S{material_bed_temperature_layer_0}
+M104 S170
+M190 S{material_bed_temperature_layer_0}
+
+; --- HOMING SEGURO (sensorless) ---
+G28 X
+G28 Y
+G1 X0.1 Y0.1 F1000
+G28 X
+G28 Y
+G28 Z
+
+; --- LACA ---
+G1 Z15.0 F9000
+G1 X0 Y220 F6000
+M400
+M0 Echa laca y pulsa continuar
+
+; --- AUTO NIVELADO ---
+G29
+
+; --- FINAL ---
+G1 Z15.0 F9000
+G1 X0 Y0 F9000
+M109 S{material_print_temperature}
+G92 E0
+G1 F200 E3
+G92 E0
+G1 F9000
+
+M117 Imprimiendo...
